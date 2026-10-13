@@ -14,24 +14,21 @@ Rules from the interview:
 
 ```bash
 uv run scripts/founder_house_stockholm.py --list       # playlists, loop length, chunks
-uv run scripts/founder_house_stockholm.py mingel       # send a playlist (or a single scene name)
+uv run scripts/founder_house_stockholm.py main         # send the playlist (or a single scene name)
 uv run scripts/founder_house_stockholm.py --preview    # regenerate the scene GIFs below
 ```
 
-Previews are upscaled 4x; the device gets the 64x64 version. A playlist loops on the backpack until the next upload. Each upload is 18-151 chunks (limit 255), about a minute over Bluetooth. All 21 scenes together are over the limit, so the full review loop is a local GIF, not a device upload.
+Previews are upscaled 4x; the device gets the 64x64 version. A playlist loops on the backpack until the next upload. The full review loop is a local GIF, not a device upload.
 
-## Playlists
+## Playlist
 
-Slot times are not published, so playlists are switched by hand.
+The device takes at most 255 chunks (about 50 KB) per upload. All 21 scenes need 564 chunks, and even without any blinking 439, so one upload holds a subset: the approved agent and cost scenes.
 
-| Playlist | Play during                                                                            | Scenes                                                      | Loop | Chunks |
-| -------- | -------------------------------------------------------------------------------------- | ----------------------------------------------------------- | ---- | ------ |
-| `mingel` | Arrival coffee before 08:30, networking, walking, after 13:00                          | proceed, kanelbulle, interview, mining                      | 1:53 | 96     |
-| `talks`  | Keynote "Anthropic on where Claude goes next" and "How we use Claude inside Anthropic" | grep                                                        | 0:28 | 18     |
-| `panel`  | "Founder panels: on building product, teams, and margins around AI" and office hours   | lagom, taste, truth, kanelbulle, mining                     | 2:23 | 123    |
-| `ai`     | Any time: the backpack talks about itself                                              | sandbox, gpu-poor, agi-1gw                                  | 1:54 | 83     |
-| `hn1`    | Any time: Quesma posts that hit the HN front page, part 1                              | hn-cities, hn-rtk, hn-mushroom, hn-pricing, hn-burned       | 4:36 | 151    |
-| `hn2`    | Any time: Quesma posts that hit the HN front page, part 2                              | hn-backdoor, hn-otel, hn-egg, hn-compile, hn-tau            | 4:27 | 136    |
+| Playlist | Scenes                                                                             | Loop | Chunks |
+| -------- | ---------------------------------------------------------------------------------- | ---- | ------ |
+| `main`   | agi-1gw, gpu-poor, hn-cities, hn-rtk, hn-pricing, hn-burned, hn-compile, hn-tau | 6:35 | 226    |
+
+Any other scene can still be sent on its own by name.
 
 ## grep (28 s)
 

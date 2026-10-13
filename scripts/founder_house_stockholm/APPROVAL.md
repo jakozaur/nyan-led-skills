@@ -1,77 +1,37 @@
 # Founder House Stockholm: GIF approval
 
 Tick `Approved` for each GIF that can go on the backpack; leave a note under any that needs changes.
-Order matches the review loop. Storyboards: [README.md](README.md).
+Storyboards: [README.md](README.md).
 
 Removed in review: `fika-quiz`, `hiscore`, `next`, `savefile`, `hn-quant`, `hn-hotlap`
 
-| # | Scene | Playlists |
-| - | ----- | --------- |
-| 1 | [`proceed`](#1-proceed) | mingel |
-| 2 | [`kanelbulle`](#2-kanelbulle) | mingel, panel |
-| 3 | [`interview`](#3-interview) | mingel |
-| 4 | [`mining`](#4-mining) | mingel, panel |
-| 5 | [`grep`](#5-grep) | talks |
-| 6 | [`lagom`](#6-lagom) | panel |
-| 7 | [`taste`](#7-taste) | panel |
-| 8 | [`truth`](#8-truth) | panel |
-| 9 | [`sandbox`](#9-sandbox) | ai |
-| 10 | [`gpu-poor`](#10-gpu-poor) | ai |
-| 11 | [`agi-1gw`](#11-agi-1gw) | ai |
-| 12 | [`hn-cities`](#12-hn-cities) | hn1 |
-| 13 | [`hn-rtk`](#13-hn-rtk) | hn1 |
-| 14 | [`hn-mushroom`](#14-hn-mushroom) | hn1 |
-| 15 | [`hn-pricing`](#15-hn-pricing) | hn1 |
-| 16 | [`hn-burned`](#16-hn-burned) | hn1 |
-| 17 | [`hn-backdoor`](#17-hn-backdoor) | hn2 |
-| 18 | [`hn-otel`](#18-hn-otel) | hn2 |
-| 19 | [`hn-egg`](#19-hn-egg) | hn2 |
-| 20 | [`hn-compile`](#20-hn-compile) | hn2 |
-| 21 | [`hn-tau`](#21-hn-tau) | hn2 |
+| # | Scene | Playlist |
+| - | ----- | -------- |
+| 1 | [`grep`](#1-grep) | - |
+| 2 | [`lagom`](#2-lagom) | - |
+| 3 | [`taste`](#3-taste) | - |
+| 4 | [`truth`](#4-truth) | - |
+| 5 | [`kanelbulle`](#5-kanelbulle) | - |
+| 6 | [`proceed`](#6-proceed) | - |
+| 7 | [`interview`](#7-interview) | - |
+| 8 | [`mining`](#8-mining) | - |
+| 9 | [`sandbox`](#9-sandbox) | - |
+| 10 | [`gpu-poor`](#10-gpu-poor) | main |
+| 11 | [`agi-1gw`](#11-agi-1gw) | main |
+| 12 | [`hn-cities`](#12-hn-cities) | main |
+| 13 | [`hn-rtk`](#13-hn-rtk) | main |
+| 14 | [`hn-mushroom`](#14-hn-mushroom) | - |
+| 15 | [`hn-pricing`](#15-hn-pricing) | main |
+| 16 | [`hn-burned`](#16-hn-burned) | main |
+| 17 | [`hn-backdoor`](#17-hn-backdoor) | - |
+| 18 | [`hn-otel`](#18-hn-otel) | - |
+| 19 | [`hn-egg`](#19-hn-egg) | - |
+| 20 | [`hn-compile`](#20-hn-compile) | main |
+| 21 | [`hn-tau`](#21-hn-tau) | main |
 
-## 1. proceed
+## 1. grep
 
-Playlists: `mingel`. Loop: 27 s.
-
-![proceed](proceed.gif)
-
-- [ ] Approved
-
-Notes:
-
-## 2. kanelbulle
-
-Playlists: `mingel`, `panel`. Loop: 27 s.
-
-![kanelbulle](kanelbulle.gif)
-
-- [ ] Approved
-
-Notes:
-
-## 3. interview
-
-Playlists: `mingel`. Loop: 27 s.
-
-![interview](interview.gif)
-
-- [ ] Approved
-
-Notes:
-
-## 4. mining
-
-Playlists: `mingel`, `panel`. Loop: 32 s.
-
-![mining](mining.gif)
-
-- [ ] Approved
-
-Notes:
-
-## 5. grep
-
-Playlists: `talks`. Loop: 28 s.
+Playlist: none. Loop: 28 s.
 
 ![grep](grep.gif)
 
@@ -79,9 +39,9 @@ Playlists: `talks`. Loop: 28 s.
 
 Notes: Fixed after review: dropped the "$ grep -c yours / 0? / ASK ME." beat; guide card now reads ANTHROPIC / EVALS / GUIDE:. Needs re-approval.
 
-## 6. lagom
+## 2. lagom
 
-Playlists: `panel`. Loop: 27 s.
+Playlist: none. Loop: 27 s.
 
 ![lagom](lagom.gif)
 
@@ -89,9 +49,9 @@ Playlists: `panel`. Loop: 27 s.
 
 Notes:
 
-## 7. taste
+## 3. taste
 
-Playlists: `panel`. Loop: 28 s.
+Playlist: none. Loop: 28 s.
 
 ![taste](taste.gif)
 
@@ -99,9 +59,9 @@ Playlists: `panel`. Loop: 28 s.
 
 Notes:
 
-## 8. truth
+## 4. truth
 
-Playlists: `panel`. Loop: 28 s.
+Playlist: none. Loop: 28 s.
 
 ![truth](truth.gif)
 
@@ -109,9 +69,49 @@ Playlists: `panel`. Loop: 28 s.
 
 Notes:
 
+## 5. kanelbulle
+
+Playlist: none. Loop: 27 s.
+
+![kanelbulle](kanelbulle.gif)
+
+- [ ] Approved
+
+Notes:
+
+## 6. proceed
+
+Playlist: none. Loop: 27 s.
+
+![proceed](proceed.gif)
+
+- [ ] Approved
+
+Notes:
+
+## 7. interview
+
+Playlist: none. Loop: 27 s.
+
+![interview](interview.gif)
+
+- [ ] Approved
+
+Notes:
+
+## 8. mining
+
+Playlist: none. Loop: 32 s.
+
+![mining](mining.gif)
+
+- [ ] Approved
+
+Notes:
+
 ## 9. sandbox
 
-Playlists: `ai`. Loop: 43 s.
+Playlist: none. Loop: 43 s.
 
 ![sandbox](sandbox.gif)
 
@@ -121,7 +121,7 @@ Notes:
 
 ## 10. gpu-poor
 
-Playlists: `ai`. Loop: 29 s.
+Playlist: `main`. Loop: 29 s.
 
 ![gpu-poor](gpu-poor.gif)
 
@@ -131,7 +131,7 @@ Notes:
 
 ## 11. agi-1gw
 
-Playlists: `ai`. Loop: 41 s.
+Playlist: `main`. Loop: 41 s.
 
 ![agi-1gw](agi-1gw.gif)
 
@@ -141,7 +141,7 @@ Notes:
 
 ## 12. hn-cities
 
-Playlists: `hn1`. Loop: 56 s.
+Playlist: `main`. Loop: 56 s.
 
 ![hn-cities](hn-cities.gif)
 
@@ -151,7 +151,7 @@ Notes:
 
 ## 13. hn-rtk
 
-Playlists: `hn1`. Loop: 55 s.
+Playlist: `main`. Loop: 55 s.
 
 ![hn-rtk](hn-rtk.gif)
 
@@ -161,7 +161,7 @@ Notes:
 
 ## 14. hn-mushroom
 
-Playlists: `hn1`. Loop: 55 s.
+Playlist: none. Loop: 55 s.
 
 ![hn-mushroom](hn-mushroom.gif)
 
@@ -171,7 +171,7 @@ Notes:
 
 ## 15. hn-pricing
 
-Playlists: `hn1`. Loop: 54 s.
+Playlist: `main`. Loop: 54 s.
 
 ![hn-pricing](hn-pricing.gif)
 
@@ -181,7 +181,7 @@ Notes:
 
 ## 16. hn-burned
 
-Playlists: `hn1`. Loop: 56 s.
+Playlist: `main`. Loop: 56 s.
 
 ![hn-burned](hn-burned.gif)
 
@@ -191,7 +191,7 @@ Notes:
 
 ## 17. hn-backdoor
 
-Playlists: `hn2`. Loop: 62 s.
+Playlist: none. Loop: 62 s.
 
 ![hn-backdoor](hn-backdoor.gif)
 
@@ -201,7 +201,7 @@ Notes:
 
 ## 18. hn-otel
 
-Playlists: `hn2`. Loop: 52 s.
+Playlist: none. Loop: 52 s.
 
 ![hn-otel](hn-otel.gif)
 
@@ -211,7 +211,7 @@ Notes:
 
 ## 19. hn-egg
 
-Playlists: `hn2`. Loop: 49 s.
+Playlist: none. Loop: 49 s.
 
 ![hn-egg](hn-egg.gif)
 
@@ -221,7 +221,7 @@ Notes:
 
 ## 20. hn-compile
 
-Playlists: `hn2`. Loop: 51 s.
+Playlist: `main`. Loop: 51 s.
 
 ![hn-compile](hn-compile.gif)
 
@@ -231,7 +231,7 @@ Notes:
 
 ## 21. hn-tau
 
-Playlists: `hn2`. Loop: 52 s.
+Playlist: `main`. Loop: 52 s.
 
 ![hn-tau](hn-tau.gif)
 

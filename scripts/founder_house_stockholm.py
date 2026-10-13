@@ -2,14 +2,14 @@
 
 21 slow scenes for the founder morning (14 Oct 2026): agenda riffs, the
 backpack talking about itself, and one scene per Quesma post that reached the
-HN front page, grouped into playlists (one upload each). The backpack plays a
-fellow attendee taking notes and nudges people to talk about keeping agent
-session transcripts.
+HN front page. The device takes at most 255 chunks per upload, so the `main`
+playlist holds the subset that plays all morning; the rest can be sent one
+scene at a time.
 Storyboards: scripts/founder_house_stockholm/README.md
 
 Usage:
   uv run scripts/founder_house_stockholm.py --list        # list playlists and scenes
-  uv run scripts/founder_house_stockholm.py mingel        # send a playlist (or a single scene)
+  uv run scripts/founder_house_stockholm.py main          # send the playlist (or a single scene)
   uv run scripts/founder_house_stockholm.py --preview     # save preview GIFs of all scenes
 """
 
@@ -1230,18 +1230,8 @@ SCENES = {
 }
 
 PLAYLISTS = {
-    "mingel": ("arrival coffee, networking, walking, after 13:00",
-               ["proceed", "kanelbulle", "interview", "mining"]),
-    "talks": ("keynote + How we use Claude inside Anthropic",
-              ["grep"]),
-    "panel": ("founder panels + office hours",
-              ["lagom", "taste", "truth", "kanelbulle", "mining"]),
-    "ai": ("the backpack talks about itself",
-           ["sandbox", "gpu-poor", "agi-1gw"]),
-    "hn1": ("Quesma posts that hit the HN front page, part 1",
-            ["hn-cities", "hn-rtk", "hn-mushroom", "hn-pricing", "hn-burned"]),
-    "hn2": ("Quesma posts that hit the HN front page, part 2",
-            ["hn-backdoor", "hn-otel", "hn-egg", "hn-compile", "hn-tau"]),
+    "main": ("the whole morning, one upload (226 of 255 chunks)",
+             ["agi-1gw", "gpu-poor", "hn-cities", "hn-rtk", "hn-pricing", "hn-burned", "hn-compile", "hn-tau"]),
 }
 
 
