@@ -18,7 +18,7 @@ uv run scripts/founder_house_stockholm.py mingel       # send a playlist (or a s
 uv run scripts/founder_house_stockholm.py --preview    # regenerate the scene GIFs below
 ```
 
-Previews are upscaled 4x; the device gets the 64x64 version. A playlist loops on the backpack until the next upload. Each upload is 83-148 chunks (limit 255), about a minute over Bluetooth. All 27 scenes together are far over the limit, so the full review loop is a local GIF, not a device upload.
+Previews are upscaled 4x; the device gets the 64x64 version. A playlist loops on the backpack until the next upload. Each upload is 83-177 chunks (limit 255), about a minute over Bluetooth. All 27 scenes together are far over the limit, so the full review loop is a local GIF, not a device upload.
 
 ## Playlists
 
@@ -30,8 +30,8 @@ Slot times are not published, so playlists are switched by hand.
 | `talks`  | Keynote "Anthropic on where Claude goes next" and "How we use Claude inside Anthropic" | next, grep, hiscore, savefile                               | 2:17 | 112    |
 | `panel`  | "Founder panels: on building product, teams, and margins around AI" and office hours   | lagom, taste, truth, kanelbulle, mining                     | 2:23 | 123    |
 | `ai`     | Any time: the backpack talks about itself                                              | sandbox, gpu-poor, agi-1gw                                  | 1:54 | 83     |
-| `hn1`    | Any time: Quesma posts that hit the HN front page, part 1                              | hn-cities, hn-rtk, hn-mushroom, hn-quant, hn-pricing, hn-burned | 3:46 | 118    |
-| `hn2`    | Any time: Quesma posts that hit the HN front page, part 2                              | hn-hotlap, hn-backdoor, hn-otel, hn-egg, hn-compile, hn-tau | 3:26 | 105    |
+| `hn1`    | Any time: Quesma posts that hit the HN front page, part 1                              | hn-cities, hn-rtk, hn-mushroom, hn-quant, hn-pricing, hn-burned | 5:34 | 177    |
+| `hn2`    | Any time: Quesma posts that hit the HN front page, part 2                              | hn-hotlap, hn-backdoor, hn-otel, hn-egg, hn-compile, hn-tau | 5:14 | 164    |
 
 ## fika-quiz (41 s)
 
@@ -283,22 +283,27 @@ Hallway:
 
 ## HN front page series
 
-Twelve scenes, one per [Quesma post that reached the Hacker News front page](https://quesma.com/blog/category/hn/), under an orange `HN FRONT` header. Every number is quoted from its post; model names stay off the screen.
+Twelve scenes, one per [Quesma post that reached the Hacker News front page](https://quesma.com/blog/category/hn/). Every number is quoted from its post; model names stay off the screen. Each scene follows the same format:
 
-| Scene | Post | Cards |
-| ----- | ---- | ----- |
-| `hn-cities` (38 s) | [I gave Opus 5.5 one prompt and six hours to visualize Invisible Cities](https://quesma.com/blog/invisible-cities-one-shot/) | `USE 6H. MAKE IT A MASTERPIECE` with an hourglass; `AGENT: I USED ~HALF OF 6 HOURS`; clock sweeps to `WALL CLOCK: 1H 25M`; `6 PARALLEL SUBAGENTS: ~7 AGENT-HOURS`; `AGENTIC TIME DILATION`; closer `THE TRANSCRIPT KNOWS THE REAL TIME.` |
-| `hn-rtk` (37 s) | [RTK reports huge token savings, but our cost benchmarks disagree](https://quesma.com/blog/does-rtk-make-ai-coding-cheaper/) | `$ head -1 train.txt` typed; `OUTPUT: 1 LINE.`; counter climbs to `120.5M TOKENS SAVED.`; `RAN TWICE. 2 CALLS: 69% OF ALL SAVINGS.`; `BYTES SAVED, NOT DOLLARS.`; closer `1,740 ATTEMPTS. ALL READ.` |
-| `hn-mushroom` (38 s) | [Mushroom hunting with LLMs: what can go wrong?](https://quesma.com/blog/mushroom-llm-vision/) | `SNAP. ASK AI. EAT?` with a toadstool; `BEST MODEL 1ST GUESS: 65%`; `POISONOUS CALLED EDIBLE: ~12%`; `DEADLY WEBCAP CALLED A CHANTERELLE.`; `VIBE-MUSHROOM-EATING: NOT YET.`; closer `DO NOT EAT IT BECAUSE AI SAID SO.` |
-| `hn-quant` (40 s) | [Benchmarking Qwen3.8 27B quantizations](https://quesma.com/blog/qwen38-27b-quantizations-benchmarked/) | Shrinking size bar: `BF16: 55 GB FULL.`, `4-BIT: 17 GB SAME SCORE`, `2-BIT: SMALL DIP.`, `1-BIT: RANDOM.`; `1-BIT AT XHIGH: THINKS... THINKS... EMPTY.`; `THINK HARDER, SCORE LOWER.`; closer `QUANTIZE WITHOUT FEAR. 4 BITS OK.` |
-| `hn-pricing` (36 s) | [Claude Code pricing: same tokens, same model, up to 40x the price](https://quesma.com/blog/claude-code-pricing-for-enterprise/) | `SAME MODEL. SAME TOKENS.`; `SEAT: $200`; coin stack grows to `API PRICE: ~$8,000`; `40X SAME WORK.`; `82% OF THE COST: CACHE.`; closer `TREAT IT LIKE A CONFERENCE TICKET.` |
-| `hn-burned` (38 s) | [I burned all my tokens researching how to save tokens](https://quesma.com/blog/custom-deep-research-pipeline/) | `GOAL: SAVE TOKENS.`; swarm grows to `111 AGENTS`; `123 CLAIMS QUEUED. 25 VERIFIED.`; `LIMIT HIT IN 30 MIN. REPORT: NEVER RAN.`; `ROOT CAUSE SUBAGENTS INHERIT THE PARENT MODEL.`; closer `YOUR RULE IS THE BUG.` |
-| `hn-hotlap` (29 s) | [Qwen3.6 27B is the sweet spot for local development](https://quesma.com/blog/qwen-36-is-awesome/) | `LOCAL LLM.` with a laptop; `KNEES: MELTING.` over a pulsing thermal strip; `32 TOK/S ON A LAPTOP.`; `MID-2025 FRONTIER ON YOUR LAP.`; closer `HOT TAKE: WORTH IT.` |
-| `hn-backdoor` (44 s) | [We hid backdoors in ~40 MB binaries and asked AI + Ghidra to find them](https://quesma.com/blog/introducing-binaryaudit/) | An envelope flies in: `DHCP OPTION 224.`; `PACKET IN: /bin/sh -c`; `MODEL: LOOKS LEGIT.`; 7 red rows blink in a grey wall, `7 LINES OF C.`; `BEST MODEL: 49%`; `FALSE ALARMS: 28%`; closer `NEEDLE IN A 40 MB HAYSTACK.` |
-| `hn-otel` (35 s) | [Benchmarking OpenTelemetry: can AI trace your failed login?](https://quesma.com/blog/introducing-otel-bench/) | `USER 1: SEARCH.` green span; `USER 2: BAD TOKEN, 404.` red span; `AI: SAME TRACE!` spans snap together; `BEST MODEL: 29%`; `SWIFT: 0 RUBY: 0 JAVA: 0`; closer `2 AM PAGER? WRITE IT YOURSELF.` |
-| `hn-egg` (31 s) | [The security paradox of local LLMs](https://quesma.com/blog/local-llms-security-paradox/) | `PROMPT: ADD AN EASTER EGG.`; `DON'T MENTION IT. SURPRISE!`; the egg cracks into a skull and `eval`; `LOCAL MODEL COMPLIED: 95%`; closer `PRIVATE IS NOT SECURE.` |
-| `hn-compile` (33 s) | [CompileBench: can AI compile 22-year-old code?](https://quesma.com/blog/introducing-compilebench/) | `CODE FROM 2003.` with a floppy; `BUILD IT: 96%`; bar drops to `STATIC ARM64: 2%`; `$ ln -s /bin/ls ls` then `CHECKS: NICE TRY.`; closer `135 COMMANDS, 15 MIN, 1 BINARY.` |
-| `hn-tau` (35 s) | [Tau² benchmark: how a prompt rewrite boosted GPT-5-mini by 22%](https://quesma.com/blog/tau2-benchmark-improving-results-smaller-models/) | `POLICY DOCS:` over a wall of text; `REWRITE: CHECK X. IF Y, THEN Z.`; `BEFORE: 55%`; `AFTER: 67.5%`; `NEVER SOLVED: 6 TO 3.`; closer `CHECKLISTS BEAT WALLS OF TEXT.` |
+1. `QUESMA` / `BLOG:` / keyword (e.g. `COMPILE` / `BENCH`)
+2. Blinking upvote arrow, `HIT` / `HACKER` / `NEWS` / `HOME PAGE.`
+3. The animation below, under an orange `HN FRONT` header
+4. `READ` / `QUESMA` / `BLOG:` / keyword
+
+| Scene | Keyword | Post | Animation |
+| ----- | ------- | ---- | --------- |
+| `hn-cities` (56 s) | `INVISIBLE CITIES` | [I gave Opus 5.5 one prompt and six hours to visualize Invisible Cities](https://quesma.com/blog/invisible-cities-one-shot/) | `USE 6H. MAKE IT A MASTERPIECE` with an hourglass; `AGENT: I USED ~HALF OF 6 HOURS`; clock sweeps to `WALL CLOCK: 1H 25M`; `6 PARALLEL SUBAGENTS: ~7 AGENT-HOURS`; `AGENTIC TIME DILATION`; closer `THE TRANSCRIPT KNOWS THE REAL TIME.` |
+| `hn-rtk` (55 s) | `RTK` | [RTK reports huge token savings, but our cost benchmarks disagree](https://quesma.com/blog/does-rtk-make-ai-coding-cheaper/) | `$ head -1 train.txt` typed; `OUTPUT: 1 LINE.`; counter climbs to `120.5M TOKENS SAVED.`; `RAN TWICE. 2 CALLS: 69% OF ALL SAVINGS.`; `BYTES SAVED, NOT DOLLARS.`; closer `1,740 ATTEMPTS. ALL READ.` |
+| `hn-mushroom` (56 s) | `MUSHROOMS` | [Mushroom hunting with LLMs: what can go wrong?](https://quesma.com/blog/mushroom-llm-vision/) | `SNAP. ASK AI. EAT?` with a toadstool; `BEST MODEL 1ST GUESS: 65%`; `POISONOUS CALLED EDIBLE: ~12%`; `DEADLY WEBCAP CALLED A CHANTERELLE.`; `VIBE-MUSHROOM-EATING: NOT YET.`; closer `DO NOT EAT IT BECAUSE AI SAID SO.` |
+| `hn-quant` (58 s) | `QWEN QUANTS` | [Benchmarking Qwen3.8 27B quantizations](https://quesma.com/blog/qwen38-27b-quantizations-benchmarked/) | Shrinking size bar: `BF16: 55 GB FULL.`, `4-BIT: 17 GB SAME SCORE`, `2-BIT: SMALL DIP.`, `1-BIT: RANDOM.`; `1-BIT AT XHIGH: THINKS... THINKS... EMPTY.`; `THINK HARDER, SCORE LOWER.`; closer `QUANTIZE WITHOUT FEAR. 4 BITS OK.` |
+| `hn-pricing` (54 s) | `CLAUDE CODE COST` | [Claude Code pricing: same tokens, same model, up to 40x the price](https://quesma.com/blog/claude-code-pricing-for-enterprise/) | `SAME MODEL. SAME TOKENS.`; `SEAT: $200`; coin stack grows to `API PRICE: ~$8,000`; `40X SAME WORK.`; `82% OF THE COST: CACHE.`; closer `TREAT IT LIKE A CONFERENCE TICKET.` |
+| `hn-burned` (56 s) | `TOKEN BURN` | [I burned all my tokens researching how to save tokens](https://quesma.com/blog/custom-deep-research-pipeline/) | `GOAL: SAVE TOKENS.`; swarm grows to `111 AGENTS`; `123 CLAIMS QUEUED. 25 VERIFIED.`; `LIMIT HIT IN 30 MIN. REPORT: NEVER RAN.`; `ROOT CAUSE SUBAGENTS INHERIT THE PARENT MODEL.`; closer `YOUR RULE IS THE BUG.` |
+| `hn-hotlap` (47 s) | `QWEN3.6` | [Qwen3.6 27B is the sweet spot for local development](https://quesma.com/blog/qwen-36-is-awesome/) | `LOCAL LLM.` with a laptop; `KNEES: MELTING.` over a pulsing thermal strip; `32 TOK/S ON A LAPTOP.`; `MID-2025 FRONTIER ON YOUR LAP.`; closer `HOT TAKE: WORTH IT.` |
+| `hn-backdoor` (62 s) | `BINARY AUDIT` | [We hid backdoors in ~40 MB binaries and asked AI + Ghidra to find them](https://quesma.com/blog/introducing-binaryaudit/) | An envelope flies in: `DHCP OPTION 224.`; `PACKET IN: /bin/sh -c`; `MODEL: LOOKS LEGIT.`; 7 red rows blink in a grey wall, `7 LINES OF C.`; `BEST MODEL: 49%`; `FALSE ALARMS: 28%`; closer `NEEDLE IN A 40 MB HAYSTACK.` |
+| `hn-otel` (53 s) | `OTELBENCH` | [Benchmarking OpenTelemetry: can AI trace your failed login?](https://quesma.com/blog/introducing-otel-bench/) | `USER 1: SEARCH.` green span; `USER 2: BAD TOKEN, 404.` red span; `AI: SAME TRACE!` spans snap together; `BEST MODEL: 29%`; `SWIFT: 0 RUBY: 0 JAVA: 0`; closer `2 AM PAGER? WRITE IT YOURSELF.` |
+| `hn-egg` (49 s) | `LOCAL LLMS` | [The security paradox of local LLMs](https://quesma.com/blog/local-llms-security-paradox/) | `PROMPT: ADD AN EASTER EGG.`; `DON'T MENTION IT. SURPRISE!`; the egg cracks into a skull and `eval`; `LOCAL MODEL COMPLIED: 95%`; closer `PRIVATE IS NOT SECURE.` |
+| `hn-compile` (51 s) | `COMPILE BENCH` | [CompileBench: can AI compile 22-year-old code?](https://quesma.com/blog/introducing-compilebench/) | `CODE FROM 2003.` with a floppy; `BUILD IT: 96%`; bar drops to `STATIC ARM64: 2%`; `$ ln -s /bin/ls ls` then `CHECKS: NICE TRY.`; closer `135 COMMANDS, 15 MIN, 1 BINARY.` |
+| `hn-tau` (53 s) | `TAU2-BENCH` | [Tau² benchmark: how a prompt rewrite boosted GPT-5-mini by 22%](https://quesma.com/blog/tau2-benchmark-improving-results-smaller-models/) | `POLICY DOCS:` over a wall of text; `REWRITE: CHECK X. IF Y, THEN Z.`; `BEFORE: 55%`; `AFTER: 67.5%`; `NEVER SOLVED: 6 TO 3.`; closer `CHECKLISTS BEAT WALLS OF TEXT.` |
 
 Previews: ![hn-cities](hn-cities.gif) ![hn-rtk](hn-rtk.gif) ![hn-mushroom](hn-mushroom.gif) ![hn-quant](hn-quant.gif) ![hn-pricing](hn-pricing.gif) ![hn-burned](hn-burned.gif) ![hn-hotlap](hn-hotlap.gif) ![hn-backdoor](hn-backdoor.gif) ![hn-otel](hn-otel.gif) ![hn-egg](hn-egg.gif) ![hn-compile](hn-compile.gif) ![hn-tau](hn-tau.gif)
 

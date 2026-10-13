@@ -2,7 +2,7 @@
 
 27 slow scenes for the founder morning (14 Oct 2026): agenda riffs, the
 backpack talking about itself, and one scene per Quesma post that reached the
-HN front page, grouped into 2-4 minute playlists (one upload each). The backpack plays a fellow attendee
+HN front page, grouped into 2-6 minute playlists (one upload each). The backpack plays a fellow attendee
 taking notes and nudges people to talk about keeping agent session transcripts.
 Storyboards: scripts/founder_house_stockholm/README.md
 
@@ -1219,6 +1219,37 @@ def card(lines, ms=CARD, header=None, deco=None, period=None, bg=BG, y0=None, ga
     return hold(draw, ms, period, bg)
 
 
+UPVOTE = [
+    "...O...",
+    "..OOO..",
+    ".OOOOO.",
+    "OOOOOOO",
+]
+
+
+def keyword_lines(keyword, y):
+    """Blog keyword in amber: scale 2 when it is one short word, else up to two scale-1 lines."""
+    if len(keyword) == 1 and len(keyword[0]) <= 5:
+        return [(keyword[0], AMBER, 2)]
+    return [(k, AMBER) for k in keyword]
+
+
+def hn_scene(keyword, body):
+    """Quesma blog: <keyword> -> hit the Hacker News home page -> animation -> read Quesma blog: <keyword>."""
+    out = card([("QUESMA", WHITE), ("BLOG:", GREY), None] + keyword_lines(keyword, 0), y0=10)
+
+    def hit(img, f):
+        draw_art_scaled(img, UPVOTE, {"O": HN_ORANGE if f == 0 else GREY}, 25, 4, 2)
+        text(img, "HIT", None, 16, WHITE)
+        text(img, "HACKER", None, 26, HN_ORANGE)
+        text(img, "NEWS", None, 36, HN_ORANGE)
+        text(img, "HOME PAGE.", None, 46, WHITE)
+    out += hold(hit, CARD, BLINK)
+    out += body()
+    out += card([("READ", WHITE), ("QUESMA", WHITE), ("BLOG:", GREY), None] + keyword_lines(keyword, 0), ms=LONG, y0=6)
+    return out
+
+
 def hbar(img, y, frac, color, h=4):
     rect(img, 2, y, 61, y + h + 1, GREY)
     if frac > 0:
@@ -1465,18 +1496,20 @@ SCENES = {
     "sandbox": scene_sandbox,
     "gpu-poor": scene_gpu_poor,
     "agi-1gw": scene_agi_1gw,
-    "hn-cities": scene_hn_cities,
-    "hn-rtk": scene_hn_rtk,
-    "hn-mushroom": scene_hn_mushroom,
-    "hn-quant": scene_hn_quant,
-    "hn-pricing": scene_hn_pricing,
-    "hn-burned": scene_hn_burned,
-    "hn-hotlap": scene_hn_hotlap,
-    "hn-backdoor": scene_hn_backdoor,
-    "hn-otel": scene_hn_otel,
-    "hn-egg": scene_hn_egg,
-    "hn-compile": scene_hn_compile,
-    "hn-tau": scene_hn_tau,
+    **{name: (lambda kw=kw, fn=fn: hn_scene(kw, fn)) for name, kw, fn in [
+        ("hn-cities", ("INVISIBLE", "CITIES"), scene_hn_cities),
+        ("hn-rtk", ("RTK",), scene_hn_rtk),
+        ("hn-mushroom", ("MUSHROOMS",), scene_hn_mushroom),
+        ("hn-quant", ("QWEN", "QUANTS"), scene_hn_quant),
+        ("hn-pricing", ("CLAUDE", "CODE COST"), scene_hn_pricing),
+        ("hn-burned", ("TOKEN BURN",), scene_hn_burned),
+        ("hn-hotlap", ("QWEN3.6",), scene_hn_hotlap),
+        ("hn-backdoor", ("BINARY", "AUDIT"), scene_hn_backdoor),
+        ("hn-otel", ("OTELBENCH",), scene_hn_otel),
+        ("hn-egg", ("LOCAL LLMS",), scene_hn_egg),
+        ("hn-compile", ("COMPILE", "BENCH"), scene_hn_compile),
+        ("hn-tau", ("TAU2-BENCH",), scene_hn_tau),
+    ]},
 }
 
 PLAYLISTS = {
