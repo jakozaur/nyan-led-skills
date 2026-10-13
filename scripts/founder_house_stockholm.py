@@ -1,9 +1,10 @@
 """Claude Founder House Stockholm: scene set for the Nyan Gear LED backpack.
 
-27 slow scenes for the founder morning (14 Oct 2026): agenda riffs, the
+21 slow scenes for the founder morning (14 Oct 2026): agenda riffs, the
 backpack talking about itself, and one scene per Quesma post that reached the
-HN front page, grouped into 2-6 minute playlists (one upload each). The backpack plays a fellow attendee
-taking notes and nudges people to talk about keeping agent session transcripts.
+HN front page, grouped into playlists (one upload each). The backpack plays a
+fellow attendee taking notes and nudges people to talk about keeping agent
+session transcripts.
 Storyboards: scripts/founder_house_stockholm/README.md
 
 Usage:
@@ -54,7 +55,6 @@ FONT = {
     "$": [0b00100, 0b01111, 0b10100, 0b01110, 0b00101, 0b11110, 0b00100],
     "~": [0b00000, 0b00000, 0b01000, 0b10101, 0b00010, 0b00000, 0b00000],
     "Å": [0b00100, 0b00000, 0b01110, 0b10001, 0b11111, 0b10001, 0b10001],
-    "Ä": [0b01010, 0b00000, 0b01110, 0b10001, 0b11111, 0b10001, 0b10001],
     "%": [0b11001, 0b11010, 0b00010, 0b00100, 0b01000, 0b01011, 0b10011],
     "Ö": [0b01010, 0b00000, 0b01110, 0b10001, 0b10001, 0b10001, 0b01110],
 }
@@ -62,7 +62,6 @@ FONT = {
 # ── Palette ──────────────────────────────────────────────────────
 BG = (8, 8, 16)
 TERM_BG = (10, 10, 14)
-QUIZ_BG = (8, 8, 24)
 HEADER_BG = (28, 30, 48)
 WHITE = (235, 235, 235)
 AMBER = (255, 176, 0)
@@ -75,7 +74,6 @@ SULPHUR = (211, 182, 79)
 CLAUDE = (218, 119, 87)
 DIM_CLAUDE = (110, 60, 44)
 VERMILION = (230, 100, 70)
-QUIZ_BLUE = (40, 70, 200)
 SILVER = (150, 160, 180)
 COAL = (95, 95, 108)
 GOLD = (255, 205, 60)
@@ -94,28 +92,6 @@ PENCIL = [
 ]
 PENCIL_COLORS = {"P": (230, 120, 150), "Y": AMBER, "W": (240, 210, 160), "T": GREY}
 
-ARROW_UP = [
-    "...G...",
-    "..GGG..",
-    ".GGGGG.",
-    "GGGGGGG",
-    "..GGG..",
-    "..GGG..",
-    "..GGG..",
-]
-
-PAGE = [
-    "WWWWW..",
-    "W...WW.",
-    "W.GG.WW",
-    "W.....W",
-    "W.GGG.W",
-    "W.....W",
-    "W.GG..W",
-    "W.....W",
-    "WWWWWWW",
-]
-PAGE_COLORS = {"W": WHITE, "G": GREY}
 
 SE_FLAG = [
     "BBBBYYBBBBBB",
@@ -273,10 +249,6 @@ def draw_art(img, art, palette, x, y):
                 put(img, x + c, y + r, color)
 
 
-def cursor(img, x, y, color=GREEN):
-    rect(img, x, y, x + 4, y + 6, color, fill=True)
-
-
 def bar_cursor(img, x, y, color=CLAUDE):
     for dy in range(7):
         put(img, x, y + dy, color)
@@ -325,139 +297,6 @@ def outro(lines, header=None, bg=BG, blink_last=False, dot=False):
     return hold(draw, CARD, BLINK, bg)
 
 
-# ── FIKA QUIZ ────────────────────────────────────────────────────
-
-QUIZ_ANSWERS = ["A: GIT", "B: S3", "C: LAPTOP", "D: NO IDEA"]
-
-
-def quiz_board(img, shown, lit=None):
-    for i, ans in enumerate(QUIZ_ANSWERS[:shown]):
-        y = 2 + 15 * i
-        if i == lit:
-            rect(img, 0, y, S - 1, y + 10, VERMILION, fill=True)
-        else:
-            rect(img, 0, y, S - 1, y + 10, QUIZ_BLUE)
-        text(img, ans, 3, y + 2, WHITE)
-
-
-def scene_quiz():
-    def question(img, f):
-        text(img, "FIKA QUIZ", None, 3, SULPHUR)
-        for x in range(4, 60):
-            put(img, x, 13, QUIZ_BLUE)
-        text(img, "WHERE ARE", None, 18, WHITE)
-        text(img, "YOUR AGENT", None, 28, WHITE)
-        x0 = (S - text_width("SESSIONS?")) // 2
-        text(img, "SESSIONS?" if f == 0 else "SESSIONS", x0, 38, WHITE)
-
-    out = hold(question, LONG, BLINK, QUIZ_BG)
-    for n in range(1, 5):
-        out += hold(lambda img, f, n=n: quiz_board(img, n), LONG if n == 4 else 1200, bg=QUIZ_BG)
-
-    def final(img, f):
-        text(img, "FINAL", None, 20, SULPHUR)
-        text(img, "ANSWER?", None, 30, SULPHUR)
-    out += hold(final, 3000, bg=QUIZ_BG)
-    for lit, ms in [(3, 700), (None, 700), (3, 700), (None, 700), (3, CARD)]:
-        out += hold(lambda img, f, lit=lit: quiz_board(img, 4, lit), ms, bg=QUIZ_BG)
-
-    def fifty(img, f):
-        for i in (0, 3):
-            y = 2 + 15 * i
-            rect(img, 0, y, S - 1, y + 10, QUIZ_BLUE)
-            text(img, QUIZ_ANSWERS[i], 3, y + 2, WHITE)
-        if f == 0:
-            text(img, "50:50", None, 22, SULPHUR)
-    out += hold(fifty, LONG, BLINK, QUIZ_BG)
-
-    def lifeline(img, f):
-        text(img, "LIFELINE:", None, 12, SULPHUR)
-        text(img, "FIKA WITH", None, 26, WHITE)
-        text(img, "MY HUMAN.", None, 36, WHITE)
-    out += hold(lifeline, CARD, bg=QUIZ_BG)
-    return out
-
-
-# ── Where Claude goes next (keynote) ─────────────────────────────
-
-def scene_next():
-    hdr = "#1 NEXT"
-
-    def hej(img, f):
-        notes_header(img, hdr, f)
-        text(img, "HEJ!", None, 12, CYAN, scale=2)
-        text(img, "THIS BAG", None, 31, WHITE)
-        text(img, "TAKES", None, 40, WHITE)
-        end = text(img, "NOTES.", None, 49, WHITE)
-        if f == 0:
-            cursor(img, end, 49)
-    out = hold(hej, CARD, BLINK)
-
-    def where(img, f):
-        notes_header(img, hdr, f)
-        text(img, "WHERE IS", None, 16, WHITE)
-        text(img, "CLAUDE", None, 27, CLAUDE)
-        end = text(img, "GOING?", None, 38, WHITE)
-        if f == 0:
-            cursor(img, end, 38)
-    out += hold(where, CARD, BLINK)
-
-    def karpathy(img, f):
-        notes_header(img, hdr, f)
-        text(img, "KARPATHY:", None, 11, AMBER)
-        text(img, "~5000", None, 21, WHITE, scale=2)
-        text(img, "HAVE THE", None, 40, WHITE)
-        text(img, "FRONTIER.", None, 50, CLAUDE)
-    out += hold(karpathy, LONG, BLINK)
-
-    # More power, at a higher cost: the cost bar outruns the power bar.
-    power = [12, 22, 32, 40, 46]
-    cost = [10, 24, 40, 56, 62]
-    for i in range(5):
-        def bars(img, f, i=i):
-            notes_header(img, hdr, f)
-            text(img, "NEXT:", 2, 11, AMBER)
-            text(img, "YOU TOO.", 2, 20, WHITE)
-            text(img, "POWER", 2, 32, GREEN)
-            rect(img, 1, 41, 1 + power[i], 44, GREEN, fill=True)
-            text(img, "COST", 2, 48, AMBER)
-            red = i == 4 and f == 0
-            rect(img, 1, 57, 1 + cost[i], 60, RED if red else AMBER, fill=True)
-        out += hold(bars, LONG, BLINK) if i == 4 else hold(bars, STEP)
-
-    # Paid-for tokens fall into /dev/null.
-    for py in [28, 32, 36, 40, None]:
-        def fall(img, f, py=py):
-            notes_header(img, hdr, f)
-            text(img, "PAYING FOR", None, 11, WHITE)
-            text(img, "POWER?", None, 20, WHITE)
-            rect(img, 20, 47, 43, 52, (90, 20, 20))
-            rect(img, 21, 48, 42, 52, (0, 0, 0), fill=True)
-            if py is not None:
-                draw_art(img, PAGE, PAGE_COLORS, 29, py)
-            else:
-                for x, y in [(27, 44), (32, 42), (37, 45)]:
-                    put(img, x, y, GREY)
-                text(img, "/dev/null", None, 56, RED)
-        out += hold(fall, CARD) if py is None else hold(fall, STEP)
-
-    def receipts(img, f):
-        notes_header(img, hdr, f)
-        text(img, "KEEP THE", None, 22, AMBER)
-        text(img, "RECEIPTS.", None, 32, GREEN)
-    out += hold(receipts, CARD, BLINK)
-
-    def ping(img, f):
-        text(img, "$ ping", 1, 4, TERM_GREEN)
-        end = text(img, "human", 1, 13, WHITE)
-        if f == 0:
-            bar_cursor(img, end, 13)
-        text(img, "REPLY IN", None, 32, WHITE)
-        text(img, "1 FIKA.", None, 42, AMBER)
-    out += hold(ping, CARD, BLINK, TERM_BG)
-    return out
-
-
 # ── grep 200k (How we use Claude inside Anthropic) ───────────────
 
 def scene_grep():
@@ -493,57 +332,16 @@ def scene_grep():
     out += hold(credit, LONG, bg=TERM_BG)
 
     def quote(img, f):
-        text(img, "ITS EVALS", None, 4, GREY)
-        text(img, "GUIDE:", None, 12, GREY)
-        text(img, "READ THE", None, 26, WHITE)
+        text(img, "ANTHROPIC", None, 2, GREY)
+        text(img, "EVALS", None, 10, GREY)
+        text(img, "GUIDE:", None, 18, GREY)
+        text(img, "READ THE", None, 30, WHITE)
         w = text_width("READ THE")
         for x in range((S - w) // 2, (S + w) // 2):
-            put(img, x, 34, CLAUDE)
-        text(img, "TRAN-", None, 37, CLAUDE)
-        text(img, "SCRIPTS!", None, 46, CLAUDE)
+            put(img, x, 38, CLAUDE)
+        text(img, "TRAN-", None, 41, CLAUDE)
+        text(img, "SCRIPTS!", None, 50, CLAUDE)
     out += hold(quote, LONG, bg=TERM_BG)
-
-    def yours(img, f):
-        text(img, cmd, 1, 4, TERM_GREEN)
-        end = text(img, "yours", 1, 13, WHITE)
-        if f == 0:
-            bar_cursor(img, end, 13)
-        text(img, "0?", None, 26, VERMILION, scale=2)
-        text(img, "ASK ME.", None, 48, WHITE)
-    out += hold(yours, LONG, BLINK, TERM_BG)
-    return out
-
-
-# ── HI-SCORES (talks) ────────────────────────────────────────────
-
-def scene_hiscore():
-    def table(img, f):
-        text(img, "HI-SCORES", None, 2, SULPHUR)
-        for x in range(4, 60):
-            put(img, x, 11, QUIZ_BLUE)
-        text(img, "OWN", 2, 15, GREY)
-        text(img, "SESSIONS", 2, 24, GREY)
-        text(img, "1 ANT 200K", 2, 38, CLAUDE)
-        text(img, "2 YOU", 2, 50, WHITE)
-        if f == 0:
-            text(img, "?", S - 7, 50, VERMILION)
-    out = hold(table, LONG, BLINK, QUIZ_BG)
-
-    def praise(img, f):
-        text(img, "1ST PLACE:", None, 16, SULPHUR)
-        text(img, "JÄTTEBRA!", None, 30, CYAN)
-    out += hold(praise, CARD, bg=QUIZ_BG)
-
-    def player2(img, f):
-        text(img, "PLAYER 2", None, 8, WHITE)
-        text(img, "READY?", None, 18, WHITE)
-        if f == 0:
-            text(img, "PRESS", None, 34, SULPHUR)
-            text(img, "SAVE", None, 43, SULPHUR)
-        text(img, "SESSIONS", None, 52, GREY)
-    out += hold(player2, LONG, BLINK, QUIZ_BG)
-    out += outro([("INSERT", SULPHUR), ("FIKA TO", WHITE), ("CONTINUE", WHITE)],
-                 bg=QUIZ_BG, blink_last=True)
     return out
 
 
@@ -894,37 +692,6 @@ def scene_mining():
     return out
 
 
-# ── Save files (mingel) ──────────────────────────────────────────
-
-def scene_savefile():
-    def save(img, f):
-        draw_art(img, FLOPPY, FLOPPY_COLORS, 25, 3 + f)
-        text(img, "SESSIONS", None, 20, WHITE)
-        text(img, "ARE YOUR", None, 29, WHITE)
-        text(img, "SAVE FILES", None, 38, GREEN)
-    out = hold(save, LONG, BLINK)
-
-    def autosave(img, f):
-        text(img, "AUTOSAVE:", None, 14, WHITE)
-        if f == 0:
-            text(img, "OFF", None, 28, RED, scale=2)
-    out += hold(autosave, CARD, 1000)
-
-    def over(img, f):
-        text(img, "GAME OVER.", None, 12, RED)
-        text(img, "LESSONS TO", None, 28, WHITE)
-        text(img, "RELEARN.", None, 37, WHITE)
-    out += hold(over, LONG)
-
-    for d in "98765":
-        def countdown(img, f, d=d):
-            text(img, "CONTINUE?", None, 6, SULPHUR)
-            text(img, d, None, 22, WHITE, scale=4)
-        out += hold(countdown, 1000)
-    out += outro([("PRESS", SULPHUR), ("START:", SULPHUR), ("SAY HEJ.", CYAN)], blink_last=True)
-    return out
-
-
 # ── AI voice: the backpack talks about itself ────────────────────
 
 ROBOT = [
@@ -1174,16 +941,6 @@ ENVELOPE = [
     "WWWWWWWWWWW",
 ]
 
-LAPTOP = [
-    ".GGGGGGGGGGGG.",
-    ".GBBBBBBBBBBG.",
-    ".GBCCBBBBBBBG.",
-    ".GBBBBCCBBBBG.",
-    ".GBCCCBBBBBBG.",
-    ".GGGGGGGGGGGG.",
-    "GGGGGGGGGGGGGG",
-]
-LAPTOP_COLORS = {"G": (150, 150, 165), "B": (20, 30, 60), "C": GREEN}
 
 HOURGLASS = [
     "WWWWWWW",
@@ -1314,22 +1071,6 @@ def scene_hn_mushroom():
     return out
 
 
-def scene_hn_quant():
-    h = hn_header
-    out = []
-    for bits, size, verdict, frac, color in [("BF16:", "55 GB", "FULL.", 1.0, WHITE),
-                                             ("4-BIT:", "17 GB", "SAME SCORE", 17 / 55, GREEN),
-                                             ("2-BIT:", "", "SMALL DIP.", 0.2, AMBER),
-                                             ("1-BIT:", "", "RANDOM.", 0.1, RED)]:
-        lines = [(bits, AMBER), (size, WHITE)] if size else [(bits, AMBER), None]
-        out += card(lines + [None, (verdict, color)], header=h, deco=lambda img, f, frac=frac: hbar(img, 54, frac, CYAN))
-    out += card([("1-BIT AT", WHITE), ("XHIGH:", AMBER), ("THINKS...", GREY), ("THINKS...", GREY), ("EMPTY.", RED)],
-                header=h, ms=LONG)
-    out += card([("THINK", WHITE), ("HARDER,", WHITE), ("SCORE", AMBER), ("LOWER.", AMBER)], header=h)
-    out += outro([("QUANTIZE", CYAN), ("WITHOUT", WHITE), ("FEAR.", WHITE), ("4 BITS OK.", GREEN)])
-    return out
-
-
 def scene_hn_pricing():
     h = hn_header
 
@@ -1362,24 +1103,6 @@ def scene_hn_burned():
     out += card([("ROOT CAUSE", GREY), ("SUBAGENTS", WHITE), ("INHERIT", WHITE), ("THE PARENT", WHITE), ("MODEL.", AMBER)],
                 header=h, ms=LONG)
     out += outro([("YOUR RULE", WHITE), ("IS THE", WHITE), ("BUG.", RED)])
-    return out
-
-
-def scene_hn_hotlap():
-    h = hn_header
-    heat = [(40, 60, 200), (120, 60, 200), (220, 60, 120), (255, 140, 0), (255, 230, 60)]
-
-    def lap(img, f, hot=False):
-        draw_art_scaled(img, LAPTOP, LAPTOP_COLORS, 18, 40, 2)
-        if hot:
-            for i, c in enumerate(heat):
-                rect(img, 4 + 11 * i, 59 - f, 13 + 11 * i, 62, c, fill=True)
-    out = card([("LOCAL", WHITE, 2), ("LLM.", WHITE)], header=h, deco=lap)
-    out += card([("KNEES:", WHITE), ("MELTING.", RED)], header=h,
-                deco=lambda img, f: lap(img, f, True), period=BLINK, ms=LONG)
-    out += card([("32 TOK/S", GREEN), ("ON A", WHITE), ("LAPTOP.", WHITE)], header=h)
-    out += card([("MID-2025", AMBER), ("FRONTIER", AMBER), ("ON YOUR", WHITE), ("LAP.", WHITE)], header=h)
-    out += outro([("HOT TAKE:", RED), ("WORTH IT.", GREEN)], blink_last=True)
     return out
 
 
@@ -1481,10 +1204,7 @@ def scene_hn_tau():
 # ── Scene and playlist registry ──────────────────────────────────
 
 SCENES = {
-    "fika-quiz": scene_quiz,
-    "next": scene_next,
     "grep": scene_grep,
-    "hiscore": scene_hiscore,
     "lagom": scene_lagom,
     "taste": scene_taste,
     "truth": scene_truth,
@@ -1492,7 +1212,6 @@ SCENES = {
     "proceed": scene_proceed,
     "interview": scene_interview,
     "mining": scene_mining,
-    "savefile": scene_savefile,
     "sandbox": scene_sandbox,
     "gpu-poor": scene_gpu_poor,
     "agi-1gw": scene_agi_1gw,
@@ -1500,10 +1219,8 @@ SCENES = {
         ("hn-cities", ("INVISIBLE", "CITIES"), scene_hn_cities),
         ("hn-rtk", ("RTK",), scene_hn_rtk),
         ("hn-mushroom", ("MUSHROOMS",), scene_hn_mushroom),
-        ("hn-quant", ("QWEN", "QUANTS"), scene_hn_quant),
         ("hn-pricing", ("CLAUDE", "CODE COST"), scene_hn_pricing),
         ("hn-burned", ("TOKEN BURN",), scene_hn_burned),
-        ("hn-hotlap", ("QWEN3.6",), scene_hn_hotlap),
         ("hn-backdoor", ("BINARY", "AUDIT"), scene_hn_backdoor),
         ("hn-otel", ("OTELBENCH",), scene_hn_otel),
         ("hn-egg", ("LOCAL LLMS",), scene_hn_egg),
@@ -1514,17 +1231,17 @@ SCENES = {
 
 PLAYLISTS = {
     "mingel": ("arrival coffee, networking, walking, after 13:00",
-               ["fika-quiz", "proceed", "kanelbulle", "interview", "mining", "savefile"]),
+               ["proceed", "kanelbulle", "interview", "mining"]),
     "talks": ("keynote + How we use Claude inside Anthropic",
-              ["next", "grep", "hiscore", "savefile"]),
+              ["grep"]),
     "panel": ("founder panels + office hours",
               ["lagom", "taste", "truth", "kanelbulle", "mining"]),
     "ai": ("the backpack talks about itself",
            ["sandbox", "gpu-poor", "agi-1gw"]),
     "hn1": ("Quesma posts that hit the HN front page, part 1",
-            ["hn-cities", "hn-rtk", "hn-mushroom", "hn-quant", "hn-pricing", "hn-burned"]),
+            ["hn-cities", "hn-rtk", "hn-mushroom", "hn-pricing", "hn-burned"]),
     "hn2": ("Quesma posts that hit the HN front page, part 2",
-            ["hn-hotlap", "hn-backdoor", "hn-otel", "hn-egg", "hn-compile", "hn-tau"]),
+            ["hn-backdoor", "hn-otel", "hn-egg", "hn-compile", "hn-tau"]),
 }
 
 
