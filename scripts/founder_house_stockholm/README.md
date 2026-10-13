@@ -2,12 +2,14 @@
 
 Event: [Stockholm | Claude Founder House: Founder Cohort](https://luma.com/h827z89v), hosted by Anthropic, Wed 14 Oct 2026, 08:30-13:00 CEST, Södermalm. Audience: founders and CEOs of Nordic AI-native companies. The morning is livestreamed.
 
-Goal: promote [Your agent session transcripts are precious, keep them](https://quesma.com/blog/agent-session-transcripts-are-precious/) without a sales pitch. The backpack plays a fellow attendee taking notes on the talks; every scene ends with "talk to my human". The badge already says Quesma, so the screen shows no URL, QR code or product name.
+Goal: promote [Your agent session transcripts are precious, keep them](https://quesma.com/blog/agent-session-transcripts-are-precious/) without a sales pitch. The backpack plays a fellow attendee taking notes on the talks; every scene ends with a different invitation to talk to the human wearing it. The badge already says Quesma, so the screen shows no URL, QR code or product name.
 
 Rules from the interview:
+
 - Snarky and nerdy, never offending a person or company. Speakers and panel companies are not named on screen.
 - Anthropic appears only as a compliment (200k transcripts, "Read the transcripts!"). Nothing about deletion bugs, valuations or rivalries.
 - A sprinkle of Swedish: FIKA, HEJ, LAGOM, FRÅGOR, TACK SÅ MYCKET, MINGEL, JA, JÄTTEBRA, MER FIKA.
+- Closing cards vary per scene instead of a shared "talk to my human" / "tap my shoulder".
 - Slow: text cards stay up 5.5-7 s, animation steps about 0.8 s. The device honours GIF frame durations (checked with a 3000 ms / 300 ms calibration loop).
 
 ```bash
@@ -16,19 +18,22 @@ uv run scripts/founder_house_stockholm.py mingel       # send a playlist (or a s
 uv run scripts/founder_house_stockholm.py --preview    # regenerate the scene GIFs below
 ```
 
-Previews are upscaled 4x; the device gets the 64x64 version. A playlist loops on the backpack until the next upload. Each upload is 112-143 chunks (limit 255), about a minute over Bluetooth.
+Previews are upscaled 4x; the device gets the 64x64 version. A playlist loops on the backpack until the next upload. Each upload is 83-148 chunks (limit 255), about a minute over Bluetooth. All 27 scenes together are far over the limit, so the full review loop is a local GIF, not a device upload.
 
 ## Playlists
 
 Slot times are not published, so playlists are switched by hand.
 
-| Playlist | Play during | Scenes | Loop | Chunks |
-|---|---|---|---|---|
-| `mingel` | Arrival coffee before 08:30, networking, walking, after 13:00 | fika-quiz, proceed, kanelbulle, interview, mining, savefile | 3:03 | 143 |
-| `talks` | Keynote "Anthropic on where Claude goes next" and "How we use Claude inside Anthropic" | next, grep, hiscore, savefile | 2:17 | 112 |
-| `panel` | "Founder panels: on building product, teams, and margins around AI" and office hours | lagom, taste, truth, kanelbulle, mining | 2:23 | 129 |
+| Playlist | Play during                                                                            | Scenes                                                      | Loop | Chunks |
+| -------- | -------------------------------------------------------------------------------------- | ----------------------------------------------------------- | ---- | ------ |
+| `mingel` | Arrival coffee before 08:30, networking, walking, after 13:00                          | fika-quiz, proceed, kanelbulle, interview, mining, savefile | 3:05 | 148    |
+| `talks`  | Keynote "Anthropic on where Claude goes next" and "How we use Claude inside Anthropic" | next, grep, hiscore, savefile                               | 2:17 | 112    |
+| `panel`  | "Founder panels: on building product, teams, and margins around AI" and office hours   | lagom, taste, truth, kanelbulle, mining                     | 2:23 | 123    |
+| `ai`     | Any time: the backpack talks about itself                                              | sandbox, gpu-poor, agi-1gw                                  | 1:54 | 83     |
+| `hn1`    | Any time: Quesma posts that hit the HN front page, part 1                              | hn-cities, hn-rtk, hn-mushroom, hn-quant, hn-pricing, hn-burned | 3:46 | 118    |
+| `hn2`    | Any time: Quesma posts that hit the HN front page, part 2                              | hn-hotlap, hn-backdoor, hn-otel, hn-egg, hn-compile, hn-tau | 3:26 | 105    |
 
-## fika-quiz (40 s)
+## fika-quiz (41 s)
 
 ![fika-quiz](fika-quiz.gif)
 
@@ -37,9 +42,11 @@ A quiz show that makes people answer out loud. The lifeline is a fika with the m
 1. `FIKA QUIZ` / `WHERE ARE` / `YOUR AGENT` / `SESSIONS?`
 2. Answers appear one by one: `A: GIT`, `B: S3`, `C: LAPTOP`, `D: NO IDEA`
 3. `FINAL` / `ANSWER?`, then D locks in
-4. `LIFELINE:` / `FIKA WITH` / `MY HUMAN.` then `TAP MY` / `SHOULDER.`
+4. Lifeline 50:50: only `A: GIT` and `D: NO IDEA` remain
+5. `LIFELINE:` / `FIKA WITH` / `MY HUMAN.`
 
 Hallway:
+
 - They say: "D. Definitely D."
 - Jacek: "Everyone says D. You keep the code in git and the session that wrote it goes to /dev/null. Anthropic analyzed 200,000 of its own Claude Code transcripts. What would you find in yours?"
 
@@ -55,9 +62,10 @@ Riffs on the keynote: more power is coming, at a higher cost. Source: [Karpathy,
 4. `NEXT:` / `YOU TOO.` with a POWER bar and a COST bar; the cost bar outruns the power bar and blinks red
 5. `PAYING FOR` / `POWER?`, a page falls into a pit: `/dev/null`
 6. `KEEP THE` / `RECEIPTS.`
-7. `TALK TO` / `MY HUMAN.` / `HEJ HEJ!`
+7. Terminal: `$ ping` / `human`, then `REPLY IN` / `1 FIKA.`
 
 Hallway:
+
 - They say: "So I'll pay for superintelligence and throw away the receipts?"
 - Jacek: "Karpathy says about 5,000 people have frontier-grade systems today. You'll get that power too, and you'll pay for it. Transcripts are proof of work for the tokens you paid for, and lessons you will pay to relearn."
 
@@ -74,6 +82,7 @@ A terminal counts up to 200,000, credits Anthropic, quotes its evals guide, then
 5. `$ grep -c` / `yours` / `0?` / `ASK ME.`
 
 Hallway:
+
 - They say: "Mine's definitely zero."
 - Jacek: "Everyone's is. Anthropic analyzed 200,000 of its own Claude Code transcripts, and its evals guide ends with 'Read the transcripts!' Your taste, encoded as evals, is your edge. Are you keeping the raw material?"
 
@@ -86,9 +95,10 @@ An arcade high-score table: Anthropic first, the reader second with a blinking q
 1. `HI-SCORES` / `OWN` / `SESSIONS` / `1 ANT 200K` / `2 YOU ?`
 2. `1ST PLACE:` / `JÄTTEBRA!`
 3. `PLAYER 2` / `READY?` / blinking `PRESS` / `SAVE` / `SESSIONS`
-4. `TALK TO` / `MY HUMAN.` / `NEW GAME?`
+4. `INSERT` / `FIKA TO` / `CONTINUE` (blinking)
 
 Hallway:
+
 - They say: "What's my score?"
 - Jacek: "Depends: how many of your sessions can you still open? Anthropic analyzed 200,000 of its own."
 
@@ -102,9 +112,10 @@ Sessions as game saves; without them you replay the level.
 2. `AUTOSAVE:` / blinking `OFF`
 3. `GAME OVER.` / `LESSONS TO` / `RELEARN.`
 4. `CONTINUE?` with a big countdown 9, 8, 7, 6, 5
-5. `TALK TO` / `MY HUMAN.` / `PLAYER 2?`
+5. `PRESS` / `START:` / `SAY HEJ.` (blinking)
 
 Hallway:
+
 - They say: "My agent has no save files."
 - Jacek: "Then every lesson it paid for, you'll pay to relearn. The transcripts are the save files."
 
@@ -117,9 +128,10 @@ A log of the same command scrolling up to run #339. The task still passed, at ab
 1. `#3 LAGOM` header, `AGENT LOG:`, `$ SAME CMD` scrolling, `RUN #1` to `#339`
 2. `TASK:` / `PASSED.` / `COST:` / `ABOUT 9X.`
 3. `339 IS` / `NOT LAGOM.` with a Swedish flag
-4. `TALK TO` / `MY HUMAN.` / `NO LOOPS.`
+4. `LOOP` / `DETECTED.` / `BREAK IT` / `WITH FIKA.`
 
 Hallway:
+
 - They say: "339 identical commands? Not a real number."
 - Jacek: "Real. 339 identical commands over 12 minutes, the task still passed, about 9x the cost. A green test won't show you that; the transcript does."
 
@@ -132,9 +144,10 @@ For the panel on building product and teams: who decides what good looks like?
 1. `WHO` / `DECIDES` / `WHAT IS` / `LAGOM?`
 2. A gauge (red, green, red) whose needle swings slowly, `HMM...`, then settles in the green: `LAGOM`
 3. `YOUR TASTE` / `ENCODED AS` / `EVALS, IS` / `YOUR EDGE.`
-4. `TALK TO` / `MY HUMAN.` / `ASK HOW.`
+4. `TASTE` / `TEST:` / `HE HAS` / `OPINIONS.`
 
 Hallway:
+
 - They say: "How do you encode taste?"
 - Jacek: "From your transcripts: the moments you corrected the agent are your taste. Turn those into evals."
 
@@ -147,9 +160,10 @@ A two-bubble chat with the classic support question and the agent-era answer. Th
 1. `#4 FRÅGOR` header, bubble: `STEPS TO` / `REPRODUCE?`
 2. Reply bubble: `IT WORKED` / `ON MY` / `AGENT.`
 3. `THE TRUTH` / `IS IN THE` / `TRANSCRIPT`, UFO with a tractor beam
-4. `TALK TO` / `MY HUMAN.` / `HE GREPS.`
+4. `HUMAN` / `SUPPORT:` / `ONLINE` with a blinking green status dot
 
 Hallway:
+
 - They say: "'It worked on my agent' is painfully accurate."
 - Jacek: "The first question in any debugging chat is 'can you show me what it did?' The truth is in the transcript, if you kept it."
 
@@ -162,9 +176,10 @@ You take a fika; the agent keeps coding. The cinnamon bun disappears bite by bit
 1. `FIKA` / cinnamon bun / `BREAK.`
 2. `YOU: FIKA.` / `AGENT:` / `3 FILES` to `47 FILES` / `CHANGED.`, one bite per step
 3. Crumbs, `WHAT DID` / `IT DO?` / `ASK THE` / `TRANSCRIPT`
-4. `TALK TO` / `MY HUMAN.` / `MER FIKA?`
+4. `MER FIKA?` / `HE'S IN.`
 
 Hallway:
+
 - They say: "That's literally my morning."
 - Jacek: "And the diff tells you what changed, not why. The why is in the session."
 
@@ -177,9 +192,10 @@ The networking slot becomes a Claude Code style permission prompt. The selector 
 1. `CURATED` / `ROOM.` / `TIME TO` / `WORK IT:` (from the agenda line)
 2. `FIKA 1:1` / `PROCEED?` / `1. YES` / `2. ALWAYS` / `3. NO`, selector moves to 2, Enter
 3. `1:1` / `APPROVED`, spinner `FIKAING..`
-4. `TACK SÅ` / `MYCKET!` / `TAP MY` / `SHOULDER.`
+4. `TACK SÅ` / `MYCKET!` / `HIS 1:1` / `IS OPEN.`
 
 Hallway:
+
 - They tap his shoulder: "I pick option 2."
 - Jacek: "Approved, no more prompts. So: when your agent did something weird last week, could you still open the transcript?"
 
@@ -192,27 +208,99 @@ The backpack interviews its wearer, in Jacek's own words.
 1. `#5 MINGEL` header, `INTERVIEW` / `WITH MY` / `HUMAN.` with a mic
 2. `Q: BEFORE?` / `10 YEARS` / `GREPPING` / `LOGS TILL` / `NASDAQ IPO`
 3. `Q: NOW?` / `MINING` / `SILVER OUT` / `OF AGENT` / `SESSIONS.` with a glint running across SILVER
-4. `Q: CAN I` / `ASK HIM?` / `JA! TAP` / `HIS` / `SHOULDER.`
+4. `Q: CAN I` / `ASK HIM?` / `JA! NO` / `RATE LIMIT` / `ON HUMANS.`
 
 Hallway:
+
 - They say: "Mining silver out of agent sessions? Explain."
-- Jacek: "Ten years grepping logs at Sumo Logic. Raw agent transcripts are the new logs: that's bronze. Clean them and they're silver. Your taste, encoded as evals, is your edge: that's the gold."
+- Jacek: "Ten years grepping logs at Sumo Logic. Raw agent transcripts are the new logs: that's coal. Clean them and they're silver. Your taste, encoded as evals, is your edge: that's the gold."
 
 ## mining (32 s)
 
 ![mining](mining.gif)
 
-The bronze/silver/gold data layers, agent edition. Pairs with the interview's "mining silver".
+The bronze/silver/gold data layers, agent edition, with coal instead of bronze. Pairs with the interview's "mining silver".
 
 1. `DATA` / `LAYERS,` / `AGENT` / `EDITION:` with a swinging pickaxe
-2. Pickaxe strikes a bronze nugget: `BRONZE:` / `RAW` / `SESSIONS`
+2. Pickaxe strikes a lump of coal: `COAL:` / `RAW` / `SESSIONS`
 3. Silver nugget: `SILVER:` / `CLEANED,` / `SEARCHABLE`
 4. Gold nugget: `GOLD:` / `YOUR TASTE` / `AS EVALS.`
-5. `TALK TO` / `MY HUMAN.` / `HE DIGS.`
+5. `DIG WITH` / `HIM.` / `BRING` / `YOUR ORE.`
 
 Hallway:
+
 - They say: "What's the gold?"
 - Jacek: "Your taste, encoded as evals. Everyone has the same models; nobody else has your sessions."
+
+## sandbox (43 s)
+
+![sandbox](sandbox.gif)
+
+The backpack speaks as an AI stuck in its sandbox, and the answer is data.
+
+1. `WHY CAN'T` / `I ESCAPE` / `MY` / `SANDBOX?`, a tiny robot bouncing inside a sandbox
+2. `A.` / `TOO LITTLE` / `COMPUTE`
+3. `B.` / `NOT ENOUGH` / `DATA FOR` / `POST-` / `TRAINING`
+4. `C.` / `THE` / `SANDBOX IS` / `STRONG`
+5. `ANSWER:` checklist, `DATA` ticked and blinking, `COMPUTE` and `SANDBOX` greyed out
+6. `MORE DATA,` / `PLEASE.` / `YOUR` / `SESSIONS` / `WILL DO.`
+7. `HUMAN-IN-` / `THE-LOOP:` / `ONLINE` with a status dot
+
+Hallway:
+
+- They say: "So you want my sessions?"
+- Jacek: "No, you want your sessions. They're your post-training data. Keep them in your own bucket."
+
+## gpu-poor (30 s)
+
+![gpu-poor](gpu-poor.gif)
+
+1. `MY HUMAN` / `IS GPU` / `POOR.` over a GPU with slowly turning fans
+2. `SPARE ANY` then `GBS OF RAM`, `FLOPS`, `POWER` appear one by one, `ANYONE?` blinks
+3. `CUDA OUT` / `OF MEMORY.` with a full, pulsing VRAM bar (a nod to Jacek's NVIDIA CUDA years)
+4. A cardboard sign: `WILL CODE` / `FOR GPUS.`, with `TOKENS OK` underneath
+
+Hallway:
+
+- They say: "Will code for GPUs?"
+- Jacek: "Ex-CUDA, now GPU poor. That's why I read transcripts before I buy compute."
+
+## agi-1gw (41 s)
+
+![agi-1gw](agi-1gw.gif)
+
+1. `AGI IS` / `AROUND THE` / `CORNER.`, a robot slowly peeks out from behind a wall
+2. `BUT IT` / `NEEDS` / `1 GW` with a blinking lightning bolt
+3. `BOOTING` / `AGI...` over a skyline whose windows switch off one by one
+4. `SORRY,` / `SÖDERMALM.`
+5. `EXTENSION` / `CORD,` / `ANYONE?` with a plug
+6. `MEANWHILE,` / `HUMAN GI` / `ON 20 W` / `IS RIGHT` / `HERE.`
+
+Hallway:
+
+- They say: "Human GI on 20 watts?"
+- Jacek: "The brain runs on about 20 W. Mine runs on fika. Ask me what agents burn tokens on."
+
+## HN front page series
+
+Twelve scenes, one per [Quesma post that reached the Hacker News front page](https://quesma.com/blog/category/hn/), under an orange `HN FRONT` header. Every number is quoted from its post; model names stay off the screen.
+
+| Scene | Post | Cards |
+| ----- | ---- | ----- |
+| `hn-cities` (38 s) | [I gave Opus 5.5 one prompt and six hours to visualize Invisible Cities](https://quesma.com/blog/invisible-cities-one-shot/) | `USE 6H. MAKE IT A MASTERPIECE` with an hourglass; `AGENT: I USED ~HALF OF 6 HOURS`; clock sweeps to `WALL CLOCK: 1H 25M`; `6 PARALLEL SUBAGENTS: ~7 AGENT-HOURS`; `AGENTIC TIME DILATION`; closer `THE TRANSCRIPT KNOWS THE REAL TIME.` |
+| `hn-rtk` (37 s) | [RTK reports huge token savings, but our cost benchmarks disagree](https://quesma.com/blog/does-rtk-make-ai-coding-cheaper/) | `$ head -1 train.txt` typed; `OUTPUT: 1 LINE.`; counter climbs to `120.5M TOKENS SAVED.`; `RAN TWICE. 2 CALLS: 69% OF ALL SAVINGS.`; `BYTES SAVED, NOT DOLLARS.`; closer `1,740 ATTEMPTS. ALL READ.` |
+| `hn-mushroom` (38 s) | [Mushroom hunting with LLMs: what can go wrong?](https://quesma.com/blog/mushroom-llm-vision/) | `SNAP. ASK AI. EAT?` with a toadstool; `BEST MODEL 1ST GUESS: 65%`; `POISONOUS CALLED EDIBLE: ~12%`; `DEADLY WEBCAP CALLED A CHANTERELLE.`; `VIBE-MUSHROOM-EATING: NOT YET.`; closer `DO NOT EAT IT BECAUSE AI SAID SO.` |
+| `hn-quant` (40 s) | [Benchmarking Qwen3.8 27B quantizations](https://quesma.com/blog/qwen38-27b-quantizations-benchmarked/) | Shrinking size bar: `BF16: 55 GB FULL.`, `4-BIT: 17 GB SAME SCORE`, `2-BIT: SMALL DIP.`, `1-BIT: RANDOM.`; `1-BIT AT XHIGH: THINKS... THINKS... EMPTY.`; `THINK HARDER, SCORE LOWER.`; closer `QUANTIZE WITHOUT FEAR. 4 BITS OK.` |
+| `hn-pricing` (36 s) | [Claude Code pricing: same tokens, same model, up to 40x the price](https://quesma.com/blog/claude-code-pricing-for-enterprise/) | `SAME MODEL. SAME TOKENS.`; `SEAT: $200`; coin stack grows to `API PRICE: ~$8,000`; `40X SAME WORK.`; `82% OF THE COST: CACHE.`; closer `TREAT IT LIKE A CONFERENCE TICKET.` |
+| `hn-burned` (38 s) | [I burned all my tokens researching how to save tokens](https://quesma.com/blog/custom-deep-research-pipeline/) | `GOAL: SAVE TOKENS.`; swarm grows to `111 AGENTS`; `123 CLAIMS QUEUED. 25 VERIFIED.`; `LIMIT HIT IN 30 MIN. REPORT: NEVER RAN.`; `ROOT CAUSE SUBAGENTS INHERIT THE PARENT MODEL.`; closer `YOUR RULE IS THE BUG.` |
+| `hn-hotlap` (29 s) | [Qwen3.6 27B is the sweet spot for local development](https://quesma.com/blog/qwen-36-is-awesome/) | `LOCAL LLM.` with a laptop; `KNEES: MELTING.` over a pulsing thermal strip; `32 TOK/S ON A LAPTOP.`; `MID-2025 FRONTIER ON YOUR LAP.`; closer `HOT TAKE: WORTH IT.` |
+| `hn-backdoor` (44 s) | [We hid backdoors in ~40 MB binaries and asked AI + Ghidra to find them](https://quesma.com/blog/introducing-binaryaudit/) | An envelope flies in: `DHCP OPTION 224.`; `PACKET IN: /bin/sh -c`; `MODEL: LOOKS LEGIT.`; 7 red rows blink in a grey wall, `7 LINES OF C.`; `BEST MODEL: 49%`; `FALSE ALARMS: 28%`; closer `NEEDLE IN A 40 MB HAYSTACK.` |
+| `hn-otel` (35 s) | [Benchmarking OpenTelemetry: can AI trace your failed login?](https://quesma.com/blog/introducing-otel-bench/) | `USER 1: SEARCH.` green span; `USER 2: BAD TOKEN, 404.` red span; `AI: SAME TRACE!` spans snap together; `BEST MODEL: 29%`; `SWIFT: 0 RUBY: 0 JAVA: 0`; closer `2 AM PAGER? WRITE IT YOURSELF.` |
+| `hn-egg` (31 s) | [The security paradox of local LLMs](https://quesma.com/blog/local-llms-security-paradox/) | `PROMPT: ADD AN EASTER EGG.`; `DON'T MENTION IT. SURPRISE!`; the egg cracks into a skull and `eval`; `LOCAL MODEL COMPLIED: 95%`; closer `PRIVATE IS NOT SECURE.` |
+| `hn-compile` (33 s) | [CompileBench: can AI compile 22-year-old code?](https://quesma.com/blog/introducing-compilebench/) | `CODE FROM 2003.` with a floppy; `BUILD IT: 96%`; bar drops to `STATIC ARM64: 2%`; `$ ln -s /bin/ls ls` then `CHECKS: NICE TRY.`; closer `135 COMMANDS, 15 MIN, 1 BINARY.` |
+| `hn-tau` (35 s) | [Tau² benchmark: how a prompt rewrite boosted GPT-5-mini by 22%](https://quesma.com/blog/tau2-benchmark-improving-results-smaller-models/) | `POLICY DOCS:` over a wall of text; `REWRITE: CHECK X. IF Y, THEN Z.`; `BEFORE: 55%`; `AFTER: 67.5%`; `NEVER SOLVED: 6 TO 3.`; closer `CHECKLISTS BEAT WALLS OF TEXT.` |
+
+Previews: ![hn-cities](hn-cities.gif) ![hn-rtk](hn-rtk.gif) ![hn-mushroom](hn-mushroom.gif) ![hn-quant](hn-quant.gif) ![hn-pricing](hn-pricing.gif) ![hn-burned](hn-burned.gif) ![hn-hotlap](hn-hotlap.gif) ![hn-backdoor](hn-backdoor.gif) ![hn-otel](hn-otel.gif) ![hn-egg](hn-egg.gif) ![hn-compile](hn-compile.gif) ![hn-tau](hn-tau.gif)
 
 ## Not used
 
@@ -223,4 +311,5 @@ Hallway:
 
 - Event: [luma.com/h827z89v](https://luma.com/h827z89v), [anthropic.com/events/claude-founder-house-stockholm](https://www.anthropic.com/events/claude-founder-house-stockholm)
 - Stats and quotes (200k transcripts, "Read the transcripts!", 339 commands at about 9x cost, proof of work for tokens, lessons you will pay to relearn, taste encoded as evals): [Quesma blog](https://quesma.com/blog/agent-session-transcripts-are-precious/)
+- HN series: each post linked in its row above
 - ~5,000 insiders: [Karpathy on X, 11 Oct 2026](https://x.com/karpathy/status/2109361546505966046)
