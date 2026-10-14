@@ -22,7 +22,7 @@ Previews are upscaled 4x; the device gets the 64x64 version. A playlist loops on
 
 ## Playlist
 
-The device takes at most 255 chunks (about 50 KB) per upload. All 21 scenes need 564 chunks, and even without any blinking 439, so one upload holds a subset: the approved agent and cost scenes.
+The device takes at most 255 chunks (about 50 KB) per upload. All 22 scenes need 603 chunks, and even without any blinking 476, so one upload holds a subset: the approved agent and cost scenes.
 
 | Playlist | Scenes                                                                             | Loop | Chunks |
 | -------- | ---------------------------------------------------------------------------------- | ---- | ------ |
@@ -45,6 +45,25 @@ Hallway:
 
 - They say: "Mine's definitely zero."
 - Jacek: "Everyone's is. Anthropic analyzed 200,000 of its own Claude Code transcripts, and its evals guide ends with 'Read the transcripts!' Your taste, encoded as evals, is your edge. Are you keeping the raw material?"
+
+## inside (65 s)
+
+![inside](inside.gif)
+
+The Anthropic research the speaker just presented on stage, then the nudge to do the same.
+
+1. `JUST ON` / `STAGE:` / `HOW AI` / `TRANSFORMS` / `WORK AT` / `ANTHROPIC`
+2. `132` / `ENGINEERS` / `SURVEYED.`, then `53` / `IN-DEPTH` / `INTERVIEWS`, then `200K` / `TRAN-` / `SCRIPTS.`
+3. `TOOL CALLS` / `IN A ROW:` counts up 9.8 to 21.2 over a growing bar, `WAS 9.8`
+4. `HUMAN` / `TURNS:` counts down 6.2 to 4.1 over a shrinking bar, `WAS 6.2`
+5. `27%` / `NEW WORK,` / `NOT JUST` / `FASTER` / `WORK.`
+6. `YOU SHOULD` / `DO IT TOO:` / `STUDY` / `YOUR OWN` / `SESSIONS.`
+7. Closer: `HE MINES` / `THEM FOR` / `SILVER.` / `ASK HIM.` (blinking)
+
+Hallway:
+
+- They say: "We just heard that talk."
+- Jacek: "Anthropic studied its own Claude Code transcripts: agents now chain 21 tool calls instead of 10, with a third fewer human turns. Your company has the same data in its sessions. Are you keeping them?"
 
 ## lagom (28 s)
 
@@ -241,4 +260,5 @@ Previews: ![hn-cities](hn-cities.gif) ![hn-rtk](hn-rtk.gif) ![hn-mushroom](hn-mu
 
 - Event: [luma.com/h827z89v](https://luma.com/h827z89v), [anthropic.com/events/claude-founder-house-stockholm](https://www.anthropic.com/events/claude-founder-house-stockholm)
 - Stats and quotes (200k transcripts, "Read the transcripts!", 339 commands at about 9x cost, proof of work for tokens, lessons you will pay to relearn, taste encoded as evals): [Quesma blog](https://quesma.com/blog/agent-session-transcripts-are-precious/)
+- `inside`: [How AI is transforming work at Anthropic](https://www.anthropic.com/research/how-ai-is-transforming-work-at-anthropic) (2 Dec 2025): 132 surveyed, 53 interviews, 200k Claude Code transcripts, max consecutive tool calls 9.8 to 21.2, human turns 6.2 to 4.1, 27% of Claude-assisted work would not have been done otherwise
 - HN series: each post linked in its row above

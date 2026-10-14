@@ -345,6 +345,45 @@ def scene_grep():
     return out
 
 
+# ── How AI is transforming work at Anthropic (just on stage) ─────
+# anthropic.com/research/how-ai-is-transforming-work-at-anthropic
+
+def ticker(label, start, end, color, steps=5):
+    """Two label lines, then a big number counting from start to end over a bar; ends on 'WAS <start>'."""
+    out = []
+    hi = max(start, end) * 1.1
+    for k in range(steps + 1):
+        v = start + (end - start) * k / steps
+        last = k == steps
+
+        def draw(img, f, v=v, last=last):
+            text(img, label[0], None, 3, WHITE)
+            text(img, label[1], None, 12, WHITE)
+            text(img, f"{v:.1f}", None, 26, color if last else GREY, scale=2)
+            hbar(img, 44, v / hi, color if last else GREY)
+            if last:
+                text(img, f"WAS {start:.1f}", None, 54, GREY)
+        out += hold(draw, LONG if last else STEP)
+    return out
+
+
+def scene_inside():
+    out = card([("JUST ON", GREY), ("STAGE:", GREY), None, ("HOW AI", WHITE), ("TRANSFORMS", WHITE),
+                ("WORK AT", WHITE), ("ANTHROPIC", CLAUDE)], ms=LONG, y0=2, gap=2)
+    for n, l1, l2 in [("132", "ENGINEERS", "SURVEYED."), ("53", "IN-DEPTH", "INTERVIEWS"),
+                      ("200K", "TRAN-", "SCRIPTS.")]:
+        out += card([(n, CLAUDE, 2), None, (l1, WHITE), (l2, WHITE)], y0=10)
+    out += ticker(("TOOL CALLS", "IN A ROW:"), 9.8, 21.2, GREEN)
+    out += ticker(("HUMAN", "TURNS:"), 6.2, 4.1, AMBER)
+    out += card([("27%", CLAUDE, 2), None, ("NEW WORK,", WHITE), ("NOT JUST", GREY), ("FASTER", GREY),
+                 ("WORK.", GREY)], ms=LONG, y0=3, gap=2)
+    out += card([("YOU SHOULD", WHITE), ("DO IT TOO:", WHITE), None, ("STUDY", AMBER), ("YOUR OWN", AMBER),
+                 ("SESSIONS.", AMBER)], ms=LONG, y0=6)
+    out += outro([("HE MINES", WHITE), ("THEM FOR", WHITE), ("SILVER.", SILVER), ("ASK HIM.", GREEN)],
+                 blink_last=True)
+    return out
+
+
 # ── 339 is not lagom (founder panels) ────────────────────────────
 
 def scene_lagom():
@@ -1205,6 +1244,7 @@ def scene_hn_tau():
 
 SCENES = {
     "grep": scene_grep,
+    "inside": scene_inside,
     "lagom": scene_lagom,
     "taste": scene_taste,
     "truth": scene_truth,
